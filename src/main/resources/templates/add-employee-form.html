@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Registro</h3>
+    <hr />
+
+    <form th:action="@{/saveEmployee}" th:object="${employee}" method="POST">
+
+        <input type="text" th:field="*{email}" class="form-control col-4 mb-4" placeholder="Email:" />
+
+<!--        <input type="text" th:field="*{clave}" class="form-control col-4 mb-4" placeholder="Clave de Elector:" />-->
+
+        <small>Debe seguir el formato especificado: AZMGRC95082114H500</small>
+        <input type="text" th:field="*{clave}" class="form-control col-4 mb-4" placeholder="Clave de Elector:" pattern="^[A-Z]{6}\d{8}[A-Z]\d{3}$" required />
+
+        <input type="text" th:field="*{seccion}" class="form-control col-4 mb-4" placeholder="Seccion:" />
+
+        <label>Tu voto es por:</label><br>
+
+                <label><input type="radio" th:field="*{partido}" name="seleccion" value="1"> &nbsp;</label>PAN<br>
+                <label><input type="radio" th:field="*{partido}" name="seleccion" value="2"> &nbsp;</label>PRI<br>
+                <label><input type="radio" th:field="*{partido}" name="seleccion" value="3"> &nbsp;</label>PRD<br>
+                <label><input type="radio" th:field="*{partido}" name="seleccion" value="4"> &nbsp;</label>Partido Verde<br>
+                <label><input type="radio" th:field="*{partido}" name="seleccion" value="5"> &nbsp;</label>PT<br>
+                <label><input type="radio" th:field="*{partido}" name="seleccion" value="6"> &nbsp;</label>Movimiento Ciudadano<br>
+                <label><input type="radio" th:field="*{partido}" name="seleccion" value="7"> &nbsp;</label>Morena<br>
+                <label><input type="radio" th:field="*{partido}" name="seleccion" value="8"> &nbsp;</label>Otro<br>
+
+
+            <button type="submit" class="btn btn-primary col-2">Enviar</button>
+            <input type="hidden" th:field="*{id}" />
+
+    </form>
+    <hr />
+<!--    <a th:href="@{/list}">Regresar</a>-->
+</div>
+
+</body>
+
+</html>

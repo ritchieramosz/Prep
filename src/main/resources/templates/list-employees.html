@@ -1,0 +1,66 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	
+	<head>
+		<title>Encuesta</title>
+		
+		<link rel="stylesheet" 
+			type="text/css" 
+			href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+		<link rel="stylesheet" 
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+	</head>
+	
+	<body>
+		
+		<div class="container">
+		
+			<h3>Encuesta</h3>
+			
+			<hr/>
+			<a th:href="@{/addEmployeeForm}" class="btn btn-primary">Agregar registro</a>
+			<br/><br/>
+			<table class="table table-bordered table-striped" id="employeeTable">
+			
+				<thead>
+					<tr>
+						<th>Email</th>
+						<th>Clave</th>
+						<th>Seccion</th>
+						<th>Partido</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="employee: ${employees}">
+						<td th:text="${employee.email}" />
+						<td th:text="${employee.clave}" />
+						<td th:text="${employee.seccion}" />
+						<td th:text="${employee.partido}" />
+						<td>
+							<a th:href="@{/showUpdateForm(employeeId=${employee.id})}" class="btn btn-info">Actualizar</a>
+							
+							<a th:href="@{/deleteEmployee(employeeId=${employee.id})}" class="btn btn-danger ml-2">Eliminar</a>
+						</td>
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$("#employeeTable").DataTable({
+						'aoColumnDefs': [{
+        				'bSortable': false,
+        				'aTargets': [-1] /* 1st one, start by the right */
+    				}]
+				});
+			})
+		</script>
+	</body>
+	
+</html>
