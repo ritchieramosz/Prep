@@ -1,3 +1,4 @@
+// this app is a crud for prep proposes
 package in.bushansirgur.springbootthymeleaf;
 
 import org.springframework.boot.SpringApplication;
